@@ -9,8 +9,12 @@ import About from './pages/About';
 import NotFound from './pages/NotFound';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, useNavigate, Navigate} from 'react-router-dom';
 import Header from './components/Header';
+import Auth from "./pages/Auth";
+import { signOut } from "firebase/auth";
+import { auth } from "./firebase";
+
 
 function App() {
   const [active, setActive] = useState("home");
@@ -51,7 +55,7 @@ function App() {
       <Route path="/create" element={<AddEditBlog />} />
       <Route path="/update/:id" element={<AddEditBlog />} />
       <Route path="/about" element={<About />} />
-      <Route path="/auth" element={<Auth setActive= {setActive} />} />
+      <Route path="/auth" element={<Auth setActive= {setActive} setUser={setUser} />} />
       <Route path="*" element={<NotFound />} />
      </Routes>
 
