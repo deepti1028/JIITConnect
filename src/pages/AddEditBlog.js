@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ReactTagInput from "@pathofdev/react-tag-input";
 import "@pathofdev/react-tag-input/build/index.css";
+import { storage } from "../firebase";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
 const initialState = {
   title: "",
@@ -22,8 +24,41 @@ const categoryOption = [
 const AddEditBlog = () => {
   const [form, setForm] = useState(initialState);
   const [file, setFile] = useState(null);
+  const [progress, setProgress] = useState(null);
 
   const { title, tags, category, trending, description } = form;
+
+  useEffect(() => {
+    const uploadFile = () => {
+      const storagRef = ref(storage, file.name);
+      const uploadTask = uploadBytesResumable(storagRef, file);
+
+      uploadTask.on("state_changed", (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setProgress(progress);
+        switch (snapshot.state) {
+          case "paused":
+            console.log("Upload is paused");
+            break;
+          case "running":
+            console.log("Upload is running");
+            break;
+          default:
+            break;
+        }
+      }, (error) => {
+        console.log(error)
+      }, 
+      () =>{
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
+          setForm((prev) => ({...prev, imgUrl: downloadUrl}));
+        });
+      }
+      );
+    };
+    file && uploadFile();
+  }, [file]);
 
   const handleChange = (e) => {};
   const handleTags = () => {};
@@ -93,26 +128,32 @@ const AddEditBlog = () => {
                 >
                   <option>Please select category</option>
                   {categoryOption.map((option, index) => (
-                    <option value={option || ""} key={index}>{option}</option>
+                    <option value={option || ""} key={index}>
+                      {option}
+                    </option>
                   ))}
                 </select>
               </div>
               <div className="col-12 py-3">
                 <textarea
-                 className="form-control description-box" 
-                 placeholder="Description"
-                 value={description}
-                 name="description"
-                 onChange={handleChange}
+                  className="form-control description-box"
+                  placeholder="Description"
+                  value={description}
+                  name="description"
+                  onChange={handleChange}
                 />
               </div>
               <div className="mb-3">
-                <input type="file" className="form-control" onChange={(e)=>setFile(e.target.files[0])} />
+                <input
+                  type="file"
+                  className="form-control"
+                  onChange={(e) => setFile(e.target.files[0])}
+                />
               </div>
               <div className="col-12 py-3 text-center">
-              <button className="btn btn-add" type="submit">
-                Submit
-              </button>
+                <button className="btn btn-add" type="submit">
+                  Submit
+                </button>
               </div>
             </form>
           </div>
