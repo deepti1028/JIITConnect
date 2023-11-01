@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import ReactTagInput from "@pathofdev/react-tag-input";
 import "@pathofdev/react-tag-input/build/index.css";
-import { storage } from "../firebase";
+import { db, storage } from "../firebase";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import { async } from "@firebase/util";
 
 const initialState = {
   title: "",
@@ -21,49 +24,82 @@ const categoryOption = [
   "Hubs & Society",
 ];
 
-const AddEditBlog = () => {
+const AddEditBlog = ({ user }) => {
   const [form, setForm] = useState(initialState);
   const [file, setFile] = useState(null);
   const [progress, setProgress] = useState(null);
+
+  const navigate = useNavigate();
+
+  console.log("user123", user.displayName);
 
   const { title, tags, category, trending, description } = form;
 
   useEffect(() => {
     const uploadFile = () => {
-      const storagRef = ref(storage, file.name);
-      const uploadTask = uploadBytesResumable(storagRef, file);
+      const storageRef = ref(storage, file.name);
+      const uploadTask = uploadBytesResumable(storageRef, file);
 
-      uploadTask.on("state_changed", (snapshot) => {
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        setProgress(progress);
-        switch (snapshot.state) {
-          case "paused":
-            console.log("Upload is paused");
-            break;
-          case "running":
-            console.log("Upload is running");
-            break;
-          default:
-            break;
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          setProgress(progress);
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+            default:
+              break;
+          }
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
+            setForm((prev) => ({ ...prev, imgUrl: downloadUrl }));
+          });
         }
-      }, (error) => {
-        console.log(error)
-      }, 
-      () =>{
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
-          setForm((prev) => ({...prev, imgUrl: downloadUrl}));
-        });
-      }
       );
     };
     file && uploadFile();
   }, [file]);
 
-  const handleChange = (e) => {};
-  const handleTags = () => {};
-  const handleTrending = () => {};
-  const onCategorChange = () => {};
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+  const handleTags = (tags) => {
+    setForm({ ...form, tags });
+  };
+  const handleTrending = (e) => {
+    setForm({ ...form, trending: e.target.value });
+  };
+  const onCategorChange = (e) => {
+    setForm({ ...form, category: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (category && tags && title && file && description && trending) {
+      try {
+        await addDoc(collection(db, "blogs"), {
+          ...form,
+          timestamp: serverTimestamp(),
+          author: user.displayName,
+          userId: user.uid,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    navigate("/");
+  };
 
   return (
     <div className="container-fluid mb-4">
@@ -73,7 +109,7 @@ const AddEditBlog = () => {
         </div>
         <div className="row h-100 justify-content-center align-items-center">
           <div className="col-10 col-md-8 col-lg-6">
-            <form className="row blog-form">
+            <form className="row blog-form" onSubmit={handleSubmit}>
               <div className="col-12 py-3">
                 <input
                   type="text"
@@ -151,7 +187,11 @@ const AddEditBlog = () => {
                 />
               </div>
               <div className="col-12 py-3 text-center">
-                <button className="btn btn-add" type="submit">
+                <button
+                  className="btn btn-add"
+                  type="submit"
+                  disabled={progress !== null && progress < 100}
+                >
                   Submit
                 </button>
               </div>
