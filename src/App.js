@@ -50,8 +50,8 @@ function App() {
       />
       <ToastContainer position= "top-center" />
      <Routes >
-      <Route path="/" element={<Home />} />
-      <Route path="/detail/:id" element={<Detail />} />
+      <Route path="/" element={<Home setActive={setActive} user={user}/>} />
+      <Route path="/detail/:id" element={<Detail setActive= {setActive}  user={user}/>} />
       <Route 
       path="/create" 
       element={user?.uid ? <AddEditBlog  user={user} /> : <Navigate to="/"/>} 

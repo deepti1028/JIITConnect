@@ -2,7 +2,7 @@ import React from 'react'
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router-dom';
 import { excerpt } from '../utility';
-const BlogSection = ({blogs, user}) => {
+const BlogSection = ({blogs, user, handleDelete}) => {
   return (
     <div>
       <div className="blog-heading text-start py-2 mb-4">Daily Blogs</div>
@@ -21,14 +21,17 @@ const BlogSection = ({blogs, user}) => {
                     <h6 className="category catg-color">{item.category}</h6>
                     <span className="title py-2">{item.title}</span>
                     <span className="meta-info">
-                        <p className="author">{item.author}</p>
+                        <p className="author">{item.author}</p> -&nbsp;
                         {item.timestamp.toDate().toDateString()}
                     </span>
                 </div>
-                <div className="short-description">
-                    {excerpt(item.description, 120)}
+                <div className="short-description text-start">
+                    {excerpt(item.description, 200)}
                 </div>
+                <Link to={`/detail/${item.id}`}>
                 <button className="btn btn-read">Read More</button>
+                </Link>
+                
                 <div style={{floar: "right"}}>
                     <FontAwesome
                     name="trash"
