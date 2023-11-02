@@ -3,19 +3,27 @@ import React, { useState, useEffect } from "react";
 import { db } from "../firebase";
 import BlogSection from "../components/BlogSection";
 import Spinner from "../components/Spinner";
-
+import { doc } from "firebase/firestore";
+import { toast } from "react-toastify";
+import Tags from "../components/Tags";
+import MostPopular from "../components/MostPopular";
 const Home = ({ setActive, user }) => {
   const [loading, setLoading] = useState(true);
   const [blogs, setBlogs] = useState([]);
+  const [tags, setTags] = useState([]);
 
   useEffect(() => {
     const unsub = onSnapshot(
       collection(db, "blogs"),
       (snapshot) => {
         let list = [];
+        let tags= [];
         snapshot.docs.forEach((doc) => {
+          tags.push(...doc.get("tags"));
           list.push({ id: doc.id, ...doc.data() });
         });
+        const uniqueTags = [...new Set(tags)];
+        setTags(uniqueTags);
         setBlogs(list);
         setLoading(false);
         setActive("home");
@@ -38,8 +46,9 @@ const Home = ({ setActive, user }) => {
       try {
         setLoading(true);
         await deleteDoc(doc(db, "blogs", id));
+        toast.success("Blog deleted successfully");
         setLoading(false);
-      } catch {
+      } catch(err) {
         console.log(err);
       }
     }
@@ -60,8 +69,8 @@ const Home = ({ setActive, user }) => {
             />
           </div>
           <div className="col-md-3">
-            <h2>Tags</h2>
-            <h2>Most Popular</h2>
+           <Tags tags={tags} />
+           <MostPopular blogs={blogs}/>
           </div>
         </div>
       </div>

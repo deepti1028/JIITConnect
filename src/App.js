@@ -1,26 +1,25 @@
-import {useState, useEffect} from "react";
-import './App.css';
+import { useState, useEffect } from "react";
+import "./App.css";
 import "./style.scss";
 import "./media-query.css";
-import Home from './pages/Home';
-import Detail from './pages/Detail';
-import AddEditBlog from './pages/AddEditBlog';
-import About from './pages/About';
-import NotFound from './pages/NotFound';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import {Routes, Route, useNavigate, Navigate} from 'react-router-dom';
-import Header from './components/Header';
+import Home from "./pages/Home";
+import Detail from "./pages/Detail";
+import AddEditBlog from "./pages/AddEditBlog";
+import About from "./pages/About";
+import NotFound from "./pages/NotFound";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import Header from "./components/Header";
 import Auth from "./pages/Auth";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase";
-
 
 function App() {
   const [active, setActive] = useState("home");
   const [user, setUser] = useState(null);
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
@@ -42,29 +41,42 @@ function App() {
 
   return (
     <div className="App">
-      <Header 
-      setActive={setActive} 
-      active={active} 
-      user = {user} 
-      handleLogout= {handleLogout}
+      <Header
+        setActive={setActive}
+        active={active}
+        user={user}
+        handleLogout={handleLogout}
       />
-      <ToastContainer position= "top-center" />
-     <Routes >
-      <Route path="/" element={<Home setActive={setActive} user={user}/>} />
-      <Route path="/detail/:id" element={<Detail setActive= {setActive}  user={user}/>} />
-      <Route 
-      path="/create" 
-      element={user?.uid ? <AddEditBlog  user={user} /> : <Navigate to="/"/>} 
-      />
-      <Route
-       path="/update/:id"
-       element={user?.uid ? <AddEditBlog  user={user} /> : <Navigate to="/"/>} 
-      />
-      <Route path="/about" element={<About />} />
-      <Route path="/auth" element={<Auth setActive= {setActive} setUser={setUser} />} />
-      <Route path="*" element={<NotFound />} />
-     </Routes>
-
+      <ToastContainer position="top-center" />
+      <Routes>
+        <Route path="/" element={<Home setActive={setActive} user={user} />} />
+        <Route
+          path="/detail/:id"
+          element={<Detail setActive={setActive} user={user} />}
+        />
+        <Route
+          path="/create"
+          element={
+            user?.uid ? <AddEditBlog user={user} /> : <Navigate to="/" />
+          }
+        />
+        <Route
+          path="/update/:id"
+          element={
+            user?.uid ? (
+              <AddEditBlog user={user} setActive={setActive} />
+            ) : (
+              <Navigate to="/" />
+            )
+          }
+        />
+        <Route path="/about" element={<About />} />
+        <Route
+          path="/auth"
+          element={<Auth setActive={setActive} setUser={setUser} />}
+        />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 }
