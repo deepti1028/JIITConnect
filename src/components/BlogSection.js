@@ -8,7 +8,7 @@ const BlogSection = ({ blogs, user, handleDelete }) => {
     <div>
       <div className="blog-heading text-start py-2 mb-4">Daily Blogs</div>
       {blogs?.map((item) => (
-        <div className="row pb-4" key={item}>
+        <div className="row pb-4" key={item.id}>
           <div className="col-md-5">
             <div className="hover-blogs-img">
               <div className="blogs-img">
@@ -33,7 +33,7 @@ const BlogSection = ({ blogs, user, handleDelete }) => {
               <button className="btn btn-read">Read More</button>
             </Link>
             {user?.uid && item.userId === user.uid && (
-              <div style={{ floar: "right" }}>
+              <div style={{ float: "right" }}>
                 <FontAwesome
                   name="trash"
                   style={{ margin: "15px", cursor: "pointer" }}
