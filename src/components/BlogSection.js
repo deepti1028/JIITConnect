@@ -2,8 +2,7 @@ import React from "react";
 import FontAwesome from "react-fontawesome";
 import { Link } from "react-router-dom";
 import { excerpt } from "../utility";
-const BlogSection = ({ blogs, user, handleDelete }) => {
-  const userId = user?.uid;
+const BlogSection = ({ blogs, user, handleDelete, userId }) => {
   return (
     <div>
       <div className="blog-heading text-start py-2 mb-4">Daily Blogs</div>
@@ -32,7 +31,7 @@ const BlogSection = ({ blogs, user, handleDelete }) => {
             <Link to={`/detail/${item.id}`}>
               <button className="btn btn-read">Read More</button>
             </Link>
-            {user?.uid && item.userId === user.uid && (
+            {user && user.uid === userId && (
               <div style={{ float: "right" }}>
                 <FontAwesome
                   name="trash"
