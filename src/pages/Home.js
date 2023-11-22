@@ -15,7 +15,9 @@ import { toast } from "react-toastify";
 import Tags from "../components/Tags";
 import MostPopular from "../components/MostPopular";
 import Trending from "../components/Trending";
+import { Link } from "react-router-dom";
 const Home = ({ setActive, user }) => {
+  const userId = user?.uid;
   const [loading, setLoading] = useState(true);
   const [blogs, setBlogs] = useState([]);
   const [tags, setTags] = useState([]);

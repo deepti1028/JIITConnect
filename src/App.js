@@ -9,12 +9,23 @@ import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useNavigate,
+  Navigate,
+  BrowserRouter,
+} from "react-router-dom";
 import Header from "./components/Header";
 import Auth from "./pages/Auth";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase";
-
+import Annapurna from "./pages/Annapurna";
+import ProductInfo from "./pages/ProductInfo";
+import Cart from "./pages/Cart";
+import Dashboard from './pages/admin/dashboard/Dashboard'
+import AddProduct from './pages/admin/dashboard/AddProduct'
+import AdminAuth from "./pages/AdminAuth";
 function App() {
   const [active, setActive] = useState("home");
   const [user, setUser] = useState(null);
@@ -48,6 +59,7 @@ function App() {
         handleLogout={handleLogout}
       />
       <ToastContainer position="top-center" />
+
       <Routes>
         <Route path="/" element={<Home setActive={setActive} user={user} />} />
         <Route
@@ -75,6 +87,22 @@ function App() {
           path="/auth"
           element={<Auth setActive={setActive} setUser={setUser} />}
         />
+
+        <Route
+          path="/annapurna"
+          element={
+            user?.uid ? (
+              <Annapurna setActive={"annapurna"} />
+            ) : (
+              <Navigate to="/auth" />
+            )
+          }
+        />
+        <Route path="/adminauth" element={<AdminAuth setActive={setActive} setUser={setUser}/>}/>
+        <Route path="/dashboard"  element={<Dashboard/>} />
+        <Route path="/addproduct"  element={<AddProduct/>} />
+        <Route path="/productinfo/:id" element={<ProductInfo />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
