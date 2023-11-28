@@ -23,8 +23,8 @@ import { auth } from "./firebase";
 import Annapurna from "./pages/Annapurna";
 import ProductInfo from "./pages/ProductInfo";
 import Cart from "./pages/Cart";
-import Dashboard from './pages/admin/dashboard/Dashboard'
-import AddProduct from './pages/admin/dashboard/AddProduct'
+import Dashboard from "./pages/admin/dashboard/Dashboard";
+import AddProduct from "./pages/admin/dashboard/AddProduct";
 import AdminAuth from "./pages/AdminAuth";
 function App() {
   const [active, setActive] = useState("home");
@@ -92,17 +92,33 @@ function App() {
           path="/annapurna"
           element={
             user?.uid ? (
-              <Annapurna setActive={"annapurna"} />
+              <Annapurna setActive={"annapurna"} user={user} />
             ) : (
               <Navigate to="/auth" />
             )
           }
+          
         />
-        <Route path="/adminauth" element={<AdminAuth setActive={setActive} setUser={setUser}/>}/>
-        <Route path="/dashboard"  element={<Dashboard/>} />
-        <Route path="/addproduct"  element={<AddProduct/>} />
+        {/* <Route
+          path="/annapurna"
+          element={
+            <ProtectedRoutes>
+              {user?.uid ? (
+                <Annapurna setActive="annapurna" />
+              ) : (
+                <Navigate to="/auth" />
+              )}
+            </ProtectedRoutes>
+          }
+        /> */}
+        <Route
+          path="/adminauth"
+          element={<AdminAuth setActive={setActive} setUser={setUser} />}
+        />
+        <Route path="/dashboard" element={<Dashboard setActive={setActive} setUser={setUser}/>} />
+        <Route path="/addproduct" element={<AddProduct />} />
         <Route path="/productinfo/:id" element={<ProductInfo />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={<Cart setActive={setActive} user={user}/>}  />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
@@ -110,3 +126,11 @@ function App() {
 }
 
 export default App;
+
+export const ProtectedRoutes = ({ children }) => {
+  if (localStorage.getItem("users")) {
+    return children;
+  } else {
+    return <Navigate to="/login" />;
+  }
+};

@@ -10,10 +10,7 @@ const Annapurna = () => {
   return (
     <>
       <Filter />
-      {console.log("annapurna before product card")}
       <ProductCard />
-      {console.log("annapurna after product card")}
-      {console.log("after provider")}
     </>
   );
 };
