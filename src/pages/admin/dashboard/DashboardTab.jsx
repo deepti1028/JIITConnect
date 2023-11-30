@@ -1032,7 +1032,7 @@ function DashboardTab() {
                                   color: mode === "dark" ? "white" : "",
                                 }}
                               >
-                                {index + 1}
+                                {"J"}.{itemIndex+1}
                               </td>
                               {/* <td className="px-6 py-4 text-black " style={{ color: mode === 'dark' ? 'white' : '' }}>
                                                             {allorder.paymentId}
@@ -1103,7 +1103,7 @@ function DashboardTab() {
                         console.error(
                           `Cart items for order ${index} is null or undefined.`
                         );
-                        index--;
+                        // index--;
                         return null;
                       }
                     })}
