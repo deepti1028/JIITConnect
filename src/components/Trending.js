@@ -27,7 +27,7 @@ const Trending = ({ blogs }) => {
   return (
     <>
       <div>
-        <div className="blog-heading text-start py-2 mb-4">Trending</div>
+        <div className="blog-heading text-start py-2 mb-4" style={{ color: '#F875AA' }}>Trending</div>
       </div>
       <Owlcarousel className="owl-theme" {...options}>
         {blogs?.map((item) => (
@@ -41,9 +41,9 @@ const Trending = ({ blogs }) => {
                     className="trending-img-relative"
                   />
                 </div>
-                <div className="trending-img-absolute"></div>
+                <div className="trending-img-absolute" style={{ border: '10px solid #662549' }}></div>
                 <div className="trending-img-absolute-1">
-                    <span className="text-white">{item.title}</span>
+                    <span className="text-white" style={{fontWeight: 'bold' }}>{item.title}</span>
                     <div className="trending-meta-info">
                         {item.author} - {item.timestamp.toDate().toDateString()}
                     </div>

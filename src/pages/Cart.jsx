@@ -376,17 +376,17 @@ const handlePayOnCounter = async () => {
     <div
       className="h-screen bg-gray-100 pt-5 "
       style={{
-        backgroundColor: "dark",
+        backgroundColor: "#22092C",
         color: "dark",
       }}
     >
-      <h1 className="mb-10 text-center text-2xl font-bold">Cart Items</h1>
+      <h1 className="mb-10 text-center text-2xl font-bold" style={{color: "#E95793"}}>Cart Items</h1>
       <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 xl:px-0 ">
         <div className="rounded-lg md:w-2/3 ">
           {cartItems.map((item, index) => {
             return (
               <div
-                className="justify-between mb-6 rounded-lg border  drop-shadow-xl bg-white p-6  sm:flex  sm:justify-start"
+                className="justify-between mb-6 rounded-lg border  drop-shadow-xl bg-[#A2678A] p-6  sm:flex  sm:justify-start"
                 style={{
                   backgroundColor: "dark",
                   color: "dark",
@@ -413,7 +413,7 @@ const handlePayOnCounter = async () => {
                     </h2>
                     <p
                       className="mt-1 text-xs font-semibold text-gray-700"
-                      style={{ color: "dark" }}
+                      style={{ color: "white" }}
                     >
                       ₹{item.price}
                     </p>
@@ -444,14 +444,11 @@ const handlePayOnCounter = async () => {
         </div>
 
         <div
-          className="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3"
-          style={{
-            backgroundColor: "dark",
-            color: "dark",
-          }}
+          className="mt-6 h-full rounded-lg border  p-6 shadow-md md:mt-0 md:w-1/3"
+          style={{ backgroundColor: "#790252", color: "white" }}
         >
           <hr className="my-4" />
-          <div className="flex justify-between mb-3">
+          <div className="flex justify-between mb-3" >
             <p className="text-lg font-bold" style={{ color: "dark" }}>
               Total
             </p>
@@ -466,7 +463,7 @@ const handlePayOnCounter = async () => {
             <button
               onClick={handlePayOnCounter}
               type="button"
-              className="focus:outline-none text-white bg-[#001d3d] hover:bg-[#001d3d] focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm w-full  py-2"
+              className="focus:outline-none text-white bg-[#22092C] hover:bg-[#22092C] focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm w-full  py-2"
             >
               Pay On Counter
             </button>

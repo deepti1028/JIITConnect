@@ -116,7 +116,7 @@ $yellow: #f5bc04;
 }
 
 .btn-sign-in {
-  background: #c43421 !important;
+  background: #E94560 !important;
   @include border-radius(0!important);
   color: #fff !important;
   padding: 10px 50px !important;
@@ -124,7 +124,7 @@ $yellow: #f5bc04;
 }
 
 .btn-sign-up {
-  background: #4287f5 !important;
+  background: #E94560 !important;
   @include border-radius(0!important);
   color: #fff !important;
   padding: 10px 50px !important;
@@ -144,7 +144,7 @@ $yellow: #f5bc04;
 }
 
 .btn-add {
-  background: #bf7034 !important;
+  background: #E94560 !important;
   @include border-radius(0!important);
   color: #fff !important;
   padding: 10px 50px !important;
@@ -207,7 +207,7 @@ $yellow: #f5bc04;
 
 .title {
   font-size: 17px;
-  color: #222 !important;
+  color: white !important;
   font-weight: 800;
   font-family: "Poppins";
   text-decoration: none;
@@ -217,7 +217,7 @@ $yellow: #f5bc04;
 .category {
   display: inline-block;
   position: relative;
-  background-color: #4287f5;
+  background-color: #E94560;
   padding: 4px 8px;
   color: #fff;
   text-decoration: none;
@@ -262,7 +262,7 @@ $yellow: #f5bc04;
 }
 
 .btn-read {
-  background: #544e66 !important;
+  background: #C147E9 !important;
   @include border-radius(0!important);
   color: #fff !important;
   padding: 5px 10px !important;
@@ -485,4 +485,10 @@ color: #777;
  -webkit-transform: translateX(0);
  transform: translateX(0);
 }
+}
+
+
+
+.react-tag-input {
+  background-color: #FACBEA !important; 
 }

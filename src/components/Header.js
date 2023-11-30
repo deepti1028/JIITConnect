@@ -157,7 +157,7 @@ const Header = ({ active, setActive, user, handleLogout }) => {
 
   const cartItems = useSelector((state) => state.cart);
   return (
-    <nav className="bg-slate-100 p-1">
+    <nav className="bg-[#662549] p-1">
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
           <Link to="/" className="text-white text-lg font-bold">
@@ -171,6 +171,7 @@ const Header = ({ active, setActive, user, handleLogout }) => {
                   to="/"
                   className="nav-link"
                   onClick={() => setActive("home")}
+                   style= {{color: '#ED9ED6', fontWeight: "bold"}}
                 >
                   Home
                 </Link>
@@ -182,21 +183,23 @@ const Header = ({ active, setActive, user, handleLogout }) => {
                   to="/create"
                   className="nav-link"
                   onClick={() => setActive("create")}
+                  style= {{color: '#ED9ED6', fontWeight: "bold"}}
                 >
                   Create
                 </Link>
               </li>
            
 
-            {/* <li className={`nav-item ${active === "About" ? "active" : ""}`}>
+            <li className={`nav-item ${active === "About" ? "active" : ""}`}>
               <Link
                 to="/about"
                 className="nav-link"
                 onClick={() => setActive("About")}
+                style= {{color: '#ED9ED6', fontWeight: "bold"}}
               >
-                About
+                Map
               </Link>
-            </li> */}
+            </li>
           
               <li
                 className={`nav-item ${active === "annapurna" ? "active" : ""}`}
@@ -205,6 +208,7 @@ const Header = ({ active, setActive, user, handleLogout }) => {
                   to="/annapurna"
                   className="nav-link"
                   onClick={() => setActive("annapurna")}
+                  style= {{color: '#ED9ED6', fontWeight: "bold"}}
                 >
                   Annapurna
                 </Link>
@@ -222,7 +226,7 @@ const Header = ({ active, setActive, user, handleLogout }) => {
                     className="w-8 h-8 rounded-full"
                   />
                 </div>
-                <p className="mt-3 mb-3">{user?.displayName}</p>
+                <p className="mt-3 mb-3" style= {{color: '#FEC260', fontWeight: 'bold'}}>{user?.displayName}</p>
                 {user.email !== "mansi1028@gmail.com" ? (
                   <Link
                     to={"/cart"}
@@ -255,8 +259,9 @@ const Header = ({ active, setActive, user, handleLogout }) => {
                   " "
                 )}
                 <li
-                  className="nav-item nav-link cursor-pointer"
+                  className="nav-item nav-link cursor-pointer mr-1"
                   onClick={handleLogout}
+                  style= {{color: '#ED9ED6', fontWeight: "bold"}}
                 >
                   Logout
                 </li>

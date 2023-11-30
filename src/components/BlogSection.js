@@ -5,7 +5,7 @@ import { excerpt } from "../utility";
 const BlogSection = ({ blogs, user, handleDelete, userId }) => {
   return (
     <div>
-      <div className="blog-heading text-start py-2 mb-4">Daily Blogs</div>
+      <div className="blog-heading text-start py-2 mb-4" style={{ color: '#F875AA' }}>Daily Blogs</div>
       {blogs?.map((item) => (
         <div className="row pb-4" key={item.id}>
           <div className="col-md-5">
@@ -20,8 +20,8 @@ const BlogSection = ({ blogs, user, handleDelete, userId }) => {
             <div className="text-start">
               <h6 className="category catg-color">{item.category}</h6>
               <span className="title py-2">{item.title}</span>
-              <span className="meta-info">
-                <p className="author">{item.author}</p> -&nbsp;
+              <span className="meta-info" style={{ color: '#A91079' }}>
+                <p className="author" style={{ color: '#A91079' }}>{item.author}</p> -&nbsp;
                 {item.timestamp.toDate().toDateString()}
               </span>
             </div>
@@ -29,7 +29,7 @@ const BlogSection = ({ blogs, user, handleDelete, userId }) => {
               {excerpt(item.description, 200)}
             </div>
             <Link to={`/detail/${item.id}`}>
-              <button className="btn btn-read">Read More</button>
+            <button className="btn btn-read" >Read More</button>
             </Link>
             {user && user.uid === userId && (
               <div style={{ float: "right" }}>

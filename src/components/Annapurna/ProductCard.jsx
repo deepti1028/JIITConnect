@@ -20,7 +20,7 @@ function ProductCard({user}) {
   }, [cartItems]);
 
   return (
-    <section className="text-gray-600 body-font h-full">
+    <section className="text-gray-600 body-font h-full" style={{backgroundColor: "#22092C"}}>
       <div className="container px-1 py-5 md:py-16 mx-auto h-full">
         {/* <div className="lg:w-1/3 w-full mb-6 lg:mb-10">
           <h1
@@ -34,7 +34,7 @@ function ProductCard({user}) {
           <div className="h-1 w-20 bg-[#02006c] rounded"></div>
         </div> */}
 
-        <div className="flex flex-wrap -m-4">
+        <div className="flex flex-wrap -m-4" >
           {product
             .filter((obj) => obj.title.toLowerCase().includes(searchkey))
             .map((item, index) => {
@@ -48,7 +48,7 @@ function ProductCard({user}) {
                 >
                   <div
                     className="h-full border-2 hover:shadow-gray-100 hover:shadow-2xl transition-shadow duration-300 ease-in-out    border-[#00072d] border-opacity-90 rounded-2xl overflow-hidden"
-                    style={{ backgroundColor: "rgb(46 49 55)", color: "white" }}
+                    style={{ backgroundColor: "#662549", color: "white" }}
                   >
                     <div className="flex justify-center cursor-pointer">
                       <img
@@ -66,14 +66,14 @@ function ProductCard({user}) {
                       </h2>
                       <h1
                         className="title-font text-lg font-medium text-gray-900 mb-3"
-                        style={{ color: "white" }}
+                        style={{ color: "#FFB07F", fontWeight: "bolder"}}
                       >
                         {title}
                       </h1>
                       {/* <p className="leading-relaxed mb-3">{item.description.}</p> */}
                       <p
                         className="leading-relaxed mb-3"
-                        style={{ color: "white" }}
+                        style={{ color: "#7AA874", fontWeight: "bolder" }}
                       >
                         ₹ {price}
                       </p>
@@ -81,7 +81,7 @@ function ProductCard({user}) {
                         <button
                           onClick={() => addCart(item)}
                           type="button"
-                          className="focus:outline-none text-white bg-[#001d3d] hover:bg-[#001d3d] focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm w-full  py-2"
+                          className="focus:outline-none text-white bg-[#22092C] hover:bg-[#22092C] focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm w-full  py-2"
                         >
                           Add To Cart
                         </button>

@@ -147,10 +147,10 @@ const AddEditBlog = ({ user, setActive }) => {
   };
 
   return (
-    <div className="container-fluid mb-4">
+    <div className="container-fluid mb-4" style={{ backgroundColor: "#22092C" }}>
       <div className="container">
         <div className="col-12 ">
-          <div className="text-center heading py-2">
+          <div className="text-center heading py-2" style={{color: "#C060A1"}}>
             {id ? "Updatae Blog" : "Create Blog"}
           </div>
         </div>
@@ -165,6 +165,7 @@ const AddEditBlog = ({ user, setActive }) => {
                   name="title"
                   value={title}
                   onChange={handleChange}
+                  style={{ backgroundColor: '#FACBEA' }}
                 />
               </div>
               <div className="col-12 py-3">
@@ -172,6 +173,8 @@ const AddEditBlog = ({ user, setActive }) => {
                   tags={tags}
                   placeholder="Tags"
                   onChange={handleTags}
+                  // style={{ backgroundColor: '#FACBEA' }}
+            
                 />
               </div>
               <div className="col-12 py-3">
@@ -185,7 +188,7 @@ const AddEditBlog = ({ user, setActive }) => {
                     checked={trending === "yes"}
                     onChange={handleTrending}
                   />
-                  <label htmlFor="radioOption" className="form-check-label">
+                  <label htmlFor="radioOption" className="form-check-label" style={{ color: 'white' }}>
                     {" "}
                     Yes&nbsp;{" "}
                   </label>
@@ -197,7 +200,7 @@ const AddEditBlog = ({ user, setActive }) => {
                     checked={trending === "no"}
                     onChange={handleTrending}
                   />
-                  <label htmlFor="radioOption" className="form-check-label">
+                  <label htmlFor="radioOption" className="form-check-label" style={{ color: 'white' }}>
                     {" "}
                     No{" "}
                   </label>
@@ -208,6 +211,7 @@ const AddEditBlog = ({ user, setActive }) => {
                   value={category}
                   onChange={onCategorChange}
                   className="catg-dropdown"
+                  style={{ backgroundColor: '#FACBEA' }}
                 >
                   <option>Please select category</option>
                   {categoryOption.map((option, index) => (
@@ -224,6 +228,7 @@ const AddEditBlog = ({ user, setActive }) => {
                   value={description}
                   name="description"
                   onChange={handleChange}
+                  style={{ backgroundColor: '#FACBEA' }}
                 />
               </div>
               <div className="mb-3">
@@ -231,13 +236,15 @@ const AddEditBlog = ({ user, setActive }) => {
                   type="file"
                   className="form-control"
                   onChange={(e) => setFile(e.target.files[0])}
+                  style={{ backgroundColor: '#FACBEA' }}
                 />
               </div>
-              <div className="col-12 py-3 text-center">
+              <div className="col-12 py-3 text-center" >
                 <button
                   className="btn btn-add"
                   type="submit"
                   disabled={progress !== null && progress < 100}
+                  
                 >
                   {id ? "Update" : "Submit"}
                 </button>

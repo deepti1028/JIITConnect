@@ -8,17 +8,17 @@ function Filter() {
     context ;
 
   return (
-    <div className=" container">
+    <div className=" container" >
       <div
         className="p-3  "
         style={{
-          backgroundColor: "white",
+          backgroundColor: "#22092C",
           color: "white",
           marginTop: "15px"
         }}
       >
-        <div className="relative">
-          <div className="absolute flex items-center ml-2 h-full">
+        <div className="relative" >
+          <div className="absolute flex items-center ml-2 h-full" >
             <svg
               className="w-4 h-4 fill-current text-primary-gray-dark"
               viewBox="0 0 16 16"
@@ -36,7 +36,7 @@ function Filter() {
             onChange={(e) => setSearchkey(e.target.value)}
             placeholder="Search here"
             className="px-8 py-3 w-full rounded-md bg-violet-0 border-transparent outline-0 text-sm"
-            style={{ backgroundColor: "rgb(64 66 70)", color: "white" }}
+            style={{ backgroundColor: "#7A316F", color: "white" }}
           />
         </div>
       </div>

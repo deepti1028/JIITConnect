@@ -81,8 +81,8 @@ const Home = ({ setActive, user }) => {
   console.log("blogs", blogs);
 
   return (
-    <div className="container-fluid pb-4 pt-4 padding">
-      <div className="container padding">
+    <div className="container-fluid bg-[#22092C] pb-4 pt-4  padding">
+      <div className="container padding ">
         <div className="row mx-0">
           <Trending blogs={trendBlogs} />
           <div className="col-md-8">

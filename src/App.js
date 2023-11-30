@@ -51,7 +51,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="App" style={{ backgroundColor: "#22092C" }}>
       <Header
         setActive={setActive}
         active={active}

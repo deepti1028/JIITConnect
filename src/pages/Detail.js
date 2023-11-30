@@ -52,7 +52,7 @@ const Detail = ({setActive}) => {
           </div>
         </div>
       </div>
-      <div className="container-fluid pb-4 pt-4 padding blog-single-content">
+      <div className="container-fluid pb-4 pt-4 padding blog-single-content" style={{ backgroundColor: "#22092C" }}>
         <div className="container padding">
           <div className="row mx-0">
             <div className="col-md-8">
@@ -60,7 +60,7 @@ const Detail = ({setActive}) => {
                 By <p className="author">{blog?.author}</p>
                 {" - "+blog?.timestamp.toDate().toDateString()}
               </span>
-              <p className="text-start">{blog?.description}</p>
+              <p className="text-start" style={{color: "#F1B4BB"}}>{blog?.description}</p>
             </div>
             <div className="col-md-3">
               <Tags tags={tags}/>
