@@ -11,11 +11,14 @@ import React, { useState, useEffect } from "react";
 import { db } from "../firebase";
 import BlogSection from "../components/BlogSection";
 import Spinner from "../components/Spinner";
+// import {chati} from ".../public/chati.svg";
 import { toast } from "react-toastify";
 import Tags from "../components/Tags";
 import MostPopular from "../components/MostPopular";
 import Trending from "../components/Trending";
 import { Link } from "react-router-dom";
+// import Chat from "./Chat";
+
 const Home = ({ setActive, user }) => {
   const userId = user?.uid;
   const [loading, setLoading] = useState(true);

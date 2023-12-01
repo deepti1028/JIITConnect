@@ -9,6 +9,7 @@ import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import {useCollectionData} from 'react-firebase-hooks/firestore';
 import {
   Routes,
   Route,
@@ -29,6 +30,7 @@ import AdminAuth from "./pages/AdminAuth";
 function App() {
   const [active, setActive] = useState("home");
   const [user, setUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const navigate = useNavigate();
 
@@ -36,6 +38,7 @@ function App() {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {
         setUser(authUser);
+        setIsLoggedIn(true);
       } else {
         setUser(null);
       }
@@ -45,6 +48,7 @@ function App() {
   const handleLogout = () => {
     signOut(auth).then(() => {
       setUser(null);
+      setIsLoggedIn(false);
       setActive("login");
       navigate("/auth");
     });

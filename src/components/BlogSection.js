@@ -1,8 +1,18 @@
-import React from "react";
+// import React from "react";
 import FontAwesome from "react-fontawesome";
 import { Link } from "react-router-dom";
 import { excerpt } from "../utility";
-const BlogSection = ({ blogs, user, handleDelete, userId }) => {
+import React, { useState, useEffect } from 'react';
+import {auth} from "../firebase";
+
+
+// console.log("hiiiiii");
+// console.log(currentUser?. uid);
+
+
+const BlogSection = ({ blogs, handleDelete, user }) => {
+  const currentUser = auth.currentUser;
+  const userId = currentUser?.displayName;
   return (
     <div>
       <div className="blog-heading text-start py-2 mb-4" style={{ color: '#F875AA' }}>Daily Blogs</div>
@@ -31,7 +41,7 @@ const BlogSection = ({ blogs, user, handleDelete, userId }) => {
             <Link to={`/detail/${item.id}`}>
             <button className="btn btn-read" >Read More</button>
             </Link>
-            {user && user.uid === userId && (
+            {user && item.author === userId && (
               <div style={{ float: "right" }}>
                 <FontAwesome
                   name="trash"

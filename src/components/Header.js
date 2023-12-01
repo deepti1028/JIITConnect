@@ -274,6 +274,7 @@ const Header = ({ active, setActive, user, handleLogout }) => {
                     active === "login" ? "active" : ""
                   }`}
                   onClick={() => setActive("login")}
+                  style= {{color: '#ED9ED6', fontWeight: "bold"}}
                 >
                   Admin Login
                 </Link>
@@ -283,6 +284,7 @@ const Header = ({ active, setActive, user, handleLogout }) => {
                     active === "login" ? "active" : ""
                   }`}
                   onClick={() => setActive("login")}
+                  style= {{color: '#ED9ED6', fontWeight: "bold"}}
                 >
                   Login
                 </Link>

@@ -21,10 +21,7 @@ import React from 'react';
 const ClassLocations = () => {
  // Sample data for classrooms, tutorial classes, and labs
  const classrooms = [
-    { classroom: 'G1', building: 'ABB-I', floor: 'Ground Floor' },
-    { classroom: 'G2', building: 'ABB-I', floor: 'Ground Floor' },
-    { classroom: 'G3', building: 'ABB-I', floor: 'Ground Floor' },
-    { classroom: 'G4', building: 'ABB-I', floor: 'Ground Floor' },
+    { classroom: 'G1-G9', building: 'ABB-I', floor: 'Ground Floor' },
     { classroom: 'G10 - G12', building: 'ABB-II', floor: 'Ground Floor' },
     { classroom: 'FF1 - FF9', building: 'ABB-I', floor: '1st Floor' },
     { classroom: 'CS1 - CS4', building: 'ABB-I', floor: '2nd Floor' },
@@ -42,6 +39,11 @@ const ClassLocations = () => {
  const labs = [
   { classroom: 'CL1 - CL8', building: 'ABB-III', floor: '-1 Floor' },
   { classroom: 'CL9 - CL16', building: 'ABB-III', floor: '-2 Floor' },
+  { classroom: 'CL17 - CL20', building: 'ABB-III', floor: '-2 Floor' },
+  { classroom: 'CL21 - CL22', building: 'ABB-I', floor: '2 Floor' },
+  { classroom: 'Phy Lab', building: 'ABB-I', floor: '2 Floor' },
+  { classroom: 'Language Lab', building: 'ABB-I', floor: 'Ground Floor' },
+  { classroom: 'BTech Lab', building: 'ABB-II', floor: 'Ground Floor(Backside)' },
     // Add more lab data here
  ];
 
