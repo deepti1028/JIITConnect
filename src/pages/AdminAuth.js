@@ -40,7 +40,7 @@ const Auth = ({ setActive, setUser }) => {
 console.log(1);
         setUser(user);
 
-        if (user?.email === "mansi1028@gmail.com") {
+        if (user?.email === "admin@mail.jiit.ac.in") {
           navigate("/dashboard");
         } else {
           setActive("home");

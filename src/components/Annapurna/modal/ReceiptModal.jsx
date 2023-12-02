@@ -1,6 +1,7 @@
 // ReceiptModal.jsx
 
 import React from 'react';
+// import receiptImage from '../.././images/receiptImage.jpeg';
 
 const ReceiptModal = ({ isOpen, closeModal, cartItems, totalAmount }) => {
   return (
@@ -16,6 +17,9 @@ const ReceiptModal = ({ isOpen, closeModal, cartItems, totalAmount }) => {
         )}
         
         <p>Total Amount: ₹{totalAmount}</p><br/>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <img src="images/receiptImage.jpeg" alt="Receipt" style={{ width: '150px', height: '200px' }} />
+        </div><br/>
         <button onClick={closeModal} 
         style={{
         fontWeight: 'bolder',
